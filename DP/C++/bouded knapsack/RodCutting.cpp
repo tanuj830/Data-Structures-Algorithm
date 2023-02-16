@@ -7,16 +7,16 @@ using namespace std;
 
 vector<vector<int>> dp(5, vector<int>(5, -1));
 
-int f(vector<int>length, vector<int>price, int wt, int i)
+int findMaxProfit(vector<int>length, vector<int>price, int wt, int i)
 {
     if(i == length.size())return 0;
     if(dp[i][wt] != -1)return dp[i][wt];
     
     if(wt >= length[i])
     {
-        return dp[i][wt] = max((price[i] + f(length, price, wt-length[i], i)) , f(length, price, wt, i+1));
+        return dp[i][wt] = max((price[i] + findMaxProfit(length, price, wt-length[i], i)) , findMaxProfit(length, price, wt, i+1));
     }
-    else return dp[i][wt] = f(length, price, wt, i+1);
+    else return dp[i][wt] = findMaxProfit(length, price, wt, i+1);
 }
 
 int main()
@@ -25,6 +25,6 @@ int main()
     vector<int>price = {1, 1,1,6};
     int n = 4;
     
-    cout << f(length, price, n, 0); // output: 6
+    cout << findMaxProfit(length, price, n, 0); // output: 6
     return 0;
 }
