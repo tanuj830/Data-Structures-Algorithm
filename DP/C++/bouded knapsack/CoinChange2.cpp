@@ -15,6 +15,7 @@
 // If im NOT TAKING COIN then increment index because i'm not intrested in that coin
 // And parallely increment no of coins if you are taking coin.
 // T.C => O(N) , S.C => O(N)
+// APPLYING DP
 #include <bits/stdc++.h>
 
 using namespace std;
