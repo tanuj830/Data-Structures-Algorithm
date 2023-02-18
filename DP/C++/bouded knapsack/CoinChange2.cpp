@@ -20,7 +20,7 @@
 using namespace std;
 
 int minNofWays(vector<int> nums, vector<vector<int>> &dp, int sum, int &minCoins, int i, int noOfCoins)
-{
+
     if(i == nums.size())return 0;
     if(sum == 0)
     {
