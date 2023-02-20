@@ -1,7 +1,9 @@
+// 0-1 BFS is an variant of Dijkistra Algorithm: In 0-1 BFS instead of different-different weight(in Dijkistra), we have weights in zeros and ones and we have to calculate the shortest distance from the source to all destination
+
 #include <bits/stdc++.h>
 using namespace std;
 
-void 0-1BFS(vector<pair<int, int>> adjlist[], int v, int s)
+void ZeroOneBFS(vector<pair<int, int>> adjlist[], int v, int s)
 {
     vector<int>dist(v, INT_MAX);
     deque<int>queue;
@@ -49,6 +51,6 @@ int main()
         adjlist[d].push_back({s, wt}); 
     }
     
-    0-1BFS(adjlist, v, 0);
+    ZeroOneBFS(adjlist, v, 0);
     return 0;
 }
