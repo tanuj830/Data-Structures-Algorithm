@@ -1,24 +1,18 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void dijkistra(vector<pair<int, int>> adjlist[], int v, int s)
+void 0-1BFS(vector<pair<int, int>> adjlist[], int v, int s)
 {
-    vector<int>visited(v, 0);
     vector<int>dist(v, INT_MAX);
-    set<pair<int, int>>set;
+    deque<int>queue;
     
-    set.insert({0, s});
+    queue.push_back(0);
     dist[s] = 0;
     
-    while(!set.empty())
+    while(!queue.empty())
     {
-        auto node = *set.begin();
-        int v = node.second;
-        int wt = node.first;
-        set.erase(set.begin());
-        
-        if(visited[v] == 1)continue;
-        visited[v] = 1;
+        int v = queue.front();
+        queue.pop_front();
         
         for(auto node : adjlist[v])
         {
@@ -28,7 +22,9 @@ void dijkistra(vector<pair<int, int>> adjlist[], int v, int s)
             if(dist[v] + child_wt < dist[child_v])
             {
                 dist[child_v] = dist[v] + child_wt;
-                set.insert({dist[child_v], child_v});
+                
+                if(child_wt == 0)queue.push_front(child_v);
+                else queue.push_back(child_v);
             }
         }
     }
@@ -43,7 +39,7 @@ int main()
     cin >> v >> e;
     
     vector<pair<int, int>>adjlist[v];
-    
+
     for(int i=0;i<e;i++)
     {
         int s, d, wt;
@@ -53,6 +49,6 @@ int main()
         adjlist[d].push_back({s, wt}); 
     }
     
-    dijkistra(adjlist, v, 0);
+    0-1BFS(adjlist, v, 0);
     return 0;
 }
